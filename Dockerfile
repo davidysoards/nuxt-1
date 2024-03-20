@@ -4,10 +4,10 @@ ENV PATH="$PNPM_HOME:$PATH"
 ENV NODE_ENV=production
 ARG PORT=3000
 RUN corepack enable
-COPY . /app
 WORKDIR /app
 
 FROM base AS build
+COPY . /app
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod=false --frozen-lockfile
 RUN pnpm run build
 
